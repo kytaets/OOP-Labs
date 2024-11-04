@@ -4,21 +4,23 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 
+class SegmentShape : Shape(), IEllipseShape, ILineShape {
 
-class SegmentShape : LineShape() {
-  private val ellipseShape = EllipseShape()
-  private val RADIUS = 20f
+  private val segmentPaint: Paint = Paint().apply {  // Use a separate Paint instance
+    color = Color.BLACK
+    style = Paint.Style.STROKE
+    strokeWidth = 8f
+  }
 
   override fun draw(canvas: Canvas, isDrawing: Boolean) {
+    paint.color = segmentPaint.color // Use the paint's color for the line
+    drawCoordLine(canvas, startX, startY, endX, endY, isDrawing) // Draw the line
 
-    super.draw(canvas, isDrawing)
+    val radius = 20f
+    segmentPaint.color = if (isDrawing) Color.BLACK else Color.GRAY // Change color based on drawing state
 
-    val circlePaint = Paint().apply {
-      color = Color.RED
-      style = Paint.Style.FILL
-    }
-
-    ellipseShape.drawSimpleCircle(canvas, startX, startY, RADIUS, circlePaint)
-    ellipseShape.drawSimpleCircle(canvas, endX, endY, RADIUS, circlePaint)
+    drawCircle(canvas, startX, startY, radius, segmentPaint) // Circle at the start
+    drawCircle(canvas, endX, endY, radius, segmentPaint) // Circle at the end
   }
 }
+

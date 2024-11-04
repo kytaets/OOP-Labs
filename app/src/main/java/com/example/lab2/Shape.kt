@@ -5,7 +5,7 @@ import android.graphics.Paint
 
 abstract class Shape {
 
-    protected val paint: Paint = Paint()
+    open val paint: Paint = Paint()
 
     var startX:  Float = 0f
     var startY:  Float = 0f
