@@ -23,18 +23,4 @@ class EllipseShape : Shape() {
             canvas.drawOval(startX, startY, endX, endY, paint)
         }
     }
-
-     fun drawSimpleCircle(canvas: Canvas, centerX: Float, centerY: Float, radius: Float, paint: Paint) {
-
-         val final_radius = when (centerX) {
-             0f -> 0f
-             else -> radius
-         }
-
-         canvas.drawOval(
-            centerX - final_radius, centerY - final_radius,
-            centerX + final_radius, centerY + final_radius,
-            paint
-        )
-    }
 }

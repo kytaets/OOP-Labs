@@ -30,6 +30,6 @@ class CubeShape : Shape(), IRectangleShape, ILineShape {
     drawCoordLine(canvas, endX, endY, endX + offset, endY - offset, isDrawing) // Bottom right vertical
 
     // Draw the base of the cube
-    drawBase(canvas, startX, startY, endX, endY, cubePaint, isDrawing)
+    drawRectangleBase(canvas, startX, startY, endX, endY, cubePaint, isDrawing)
   }
 }

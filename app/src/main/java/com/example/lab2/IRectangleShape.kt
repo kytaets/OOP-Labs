@@ -6,7 +6,7 @@ import android.graphics.DashPathEffect
 import android.graphics.Paint
 
 interface IRectangleShape {
-  fun drawBase(canvas: Canvas, startX: Float, startY: Float, endX: Float, endY: Float,paint: Paint, isDrawing: Boolean) {
+  fun drawRectangleBase(canvas: Canvas, startX: Float, startY: Float, endX: Float, endY: Float,paint: Paint, isDrawing: Boolean) {
     paint.style = Paint.Style.STROKE
     paint.color = Color.BLACK
 
