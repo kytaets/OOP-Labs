@@ -55,8 +55,9 @@ class MainActivity : AppCompatActivity() {
 
 
     val objectList = resources.getStringArray(R.array.objects)
-
     val customAdapter = CustomAdapter(this, objectList)
+    val buttons = listOf(dotBtn, lineBtn, rectBtn, ellipseBtn, cubeBtn, segmentBtn)
+
     filesList.adapter = customAdapter
 
     objectsBtn.setOnClickListener {
@@ -72,10 +73,13 @@ class MainActivity : AppCompatActivity() {
       filesList.visibility = View.GONE
       editorView.visibility = View.VISIBLE
 
+      selectedButton?.setBackgroundColor(Color.parseColor("#E9EFEC"))
+      selectedButton = buttons.find { it.text == objectName }
+      selectedButton?.setBackgroundColor(Color.GRAY)
+
       editorView.setCurrentShape(objectName)
     }
 
-    val buttons = listOf(dotBtn, lineBtn, rectBtn, ellipseBtn, cubeBtn, segmentBtn)
 
     for (button in buttons) {
       button.setOnClickListener {
@@ -83,7 +87,9 @@ class MainActivity : AppCompatActivity() {
         button.setBackgroundColor(Color.GRAY)
 
         selectedButton = button
-        editorView.setCurrentShape("${button.text}")
+        editorView.setCurrentShape(button.text.toString())
+
+        customAdapter.setSelectedPosition(buttons.indexOf(selectedButton))
       }
 
       button.setOnLongClickListener {
