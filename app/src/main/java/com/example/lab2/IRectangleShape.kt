@@ -10,10 +10,9 @@ interface IRectangleShape {
     paint.style = Paint.Style.STROKE
     paint.color = Color.BLACK
 
-    if (isDrawing) {
-      paint.pathEffect = DashPathEffect(floatArrayOf(20f, 10f), 0f)
-    } else {
-      paint.pathEffect = null
+    paint.pathEffect = when (isDrawing) {
+      true -> DashPathEffect(floatArrayOf(20f, 10f), 0f)
+      else -> null
     }
 
     canvas.drawRect(startX, startY, endX, endY, paint)

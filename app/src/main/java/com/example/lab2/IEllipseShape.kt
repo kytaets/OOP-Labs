@@ -5,7 +5,7 @@ import android.graphics.Paint
 
 interface IEllipseShape {
   fun drawCircle(canvas: Canvas, centerX: Float, centerY: Float, radius: Float, circleColor: Int) {
-    val final_radius = if (centerX == 0f) 0f else radius
+    val finalRadius = if (centerX == 0f) 0f else radius
 
     val circlePaint: Paint = Paint().apply {
       color = circleColor
@@ -14,8 +14,8 @@ interface IEllipseShape {
     }
 
     canvas.drawOval(
-      centerX - final_radius, centerY - final_radius,
-      centerX + final_radius, centerY + final_radius,
+      centerX - finalRadius, centerY - finalRadius,
+      centerX + finalRadius, centerY + finalRadius,
       circlePaint
     )
   }
