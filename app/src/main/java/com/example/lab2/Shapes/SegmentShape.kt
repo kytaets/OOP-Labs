@@ -1,7 +1,9 @@
-package com.example.lab2
+package com.example.lab2.Shapes
 
 import android.graphics.Canvas
 import android.graphics.Color
+import com.example.lab2.Shapes.Interfaces.IEllipseShape
+import com.example.lab2.Shapes.Interfaces.ILineShape
 
 class SegmentShape : Shape(), IEllipseShape, ILineShape {
 

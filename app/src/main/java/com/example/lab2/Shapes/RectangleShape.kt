@@ -1,6 +1,7 @@
-package com.example.lab2
+package com.example.lab2.Shapes
 
 import android.graphics.Canvas
+import com.example.lab2.Shapes.Interfaces.IRectangleShape
 
 open class RectangleShape : Shape(), IRectangleShape {
 

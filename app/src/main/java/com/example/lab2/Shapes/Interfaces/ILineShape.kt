@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.lab2.Shapes.Interfaces
 
 import android.graphics.Canvas
 import android.graphics.Color

@@ -5,6 +5,13 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.example.lab2.Shapes.CubeShape
+import com.example.lab2.Shapes.DotShape
+import com.example.lab2.Shapes.EllipseShape
+import com.example.lab2.Shapes.LineShape
+import com.example.lab2.Shapes.RectangleShape
+import com.example.lab2.Shapes.SegmentShape
+import com.example.lab2.Shapes.Shape
 
 class Editor @JvmOverloads constructor(
     context: Context,
