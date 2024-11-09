@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
 
   lateinit var objectName: String
 
+  lateinit var prevShapeBtn: Button
+  lateinit var nextShapeBtn: Button
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
@@ -97,5 +100,21 @@ class MainActivity : AppCompatActivity() {
         true
       }
     }
+
+    prevShapeBtn = findViewById(R.id.prevShapeBtn)
+    nextShapeBtn = findViewById(R.id.nextShapeBtn)
+
+    prevShapeBtn.setOnClickListener {
+      editorView.setShapeIndex(-1)
+
+    }
+
+    nextShapeBtn.setOnClickListener {
+      editorView.setShapeIndex(+1)
+
+    }
+
   }
+
+
 }

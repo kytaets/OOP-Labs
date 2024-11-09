@@ -22,6 +22,7 @@ class Editor @JvmOverloads constructor(
     private var currentShape: Shape? = null
     private val shapes: MutableList<Shape> = mutableListOf()
     private var currentShapeType: String = "Прямокутник"
+    var shapesIndex: Int? = 0
 
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
@@ -36,11 +37,20 @@ class Editor @JvmOverloads constructor(
         }
     }
 
+    fun setShapeIndex(addIndex: Int) {
+        shapesIndex = (shapesIndex ?: 0) + addIndex  // Оновлюємо індекс
+        shapesIndex = shapesIndex?.coerceIn(0, shapes.size)  // Обмежуємо в межах [0, shapes.size]
+        invalidate()  // Перемальовуємо View
+    }
+
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        for (shape in shapes) {
-            shape.draw(canvas, false)
+        val limit = shapesIndex?.coerceAtMost(shapes.size) ?: shapes.size
+
+        for (i in 0 until limit) {
+            shapes[i].draw(canvas, false)
         }
 
         currentShape?.draw(canvas, true)
@@ -63,6 +73,7 @@ class Editor @JvmOverloads constructor(
                 currentShape?.setCoordinates(currentShape?.startX ?: 0f, currentShape?.startY ?: 0f, event.x, event.y)
                 currentShape?.let {
                     shapes.add(it)
+                    shapesIndex = shapesIndex?.plus(1)
                 }
                 setCurrentShape(currentShapeType)
                 invalidate()

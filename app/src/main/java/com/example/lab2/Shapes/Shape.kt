@@ -5,14 +5,13 @@ import android.graphics.Paint
 
 abstract class Shape {
 
-    open val paint: Paint = Paint()
+    val paint: Paint = Paint()
 
     var startX:  Float = 0f
     var startY:  Float = 0f
     var endX:  Float = 0f
     var endY: Float = 0f
 
-    protected var isDrawing: Boolean = false
 
     init {
         paint.strokeWidth = 8f

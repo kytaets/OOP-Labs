@@ -11,8 +11,10 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="74dp"
+        android:gravity="center"
         android:orientation="horizontal"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -50,83 +52,110 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="68dp"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
             android:id="@+id/dot_btn"
-            android:text="Крапка"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/dot_image"
+            android:text="Крапка"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/line_btn"
-            android:text="Лінія"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/line_image"
+            android:text="Лінія"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/rect_btn"
-            android:text="Прямокутник"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/rectangle_image"
+            android:text="Прямокутник"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/ellipse_btn"
-            android:text="Еліпс"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/ellipse_image"
+            android:text="Еліпс"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/cube_btn"
-            android:text="Куб"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/cube_image"
+            android:text="Куб"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
 
         <Button
             android:id="@+id/segment_btn"
-            android:text="Відрізок"
-            android:textColor="#00000000"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
+            android:layout_weight="0.1"
             android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/segment_image"
+            android:text="Відрізок"
+            android:textColor="#00000000"
             app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/prevShapeBtn"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/button_shape"
+            android:drawableTop="@drawable/prev_btn_image"
+            android:text="Відрізок"
+            android:textColor="#00000000"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/nextShapeBtn"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.2"
+            android:background="@drawable/button_shape"
+            android:drawableTop="@drawable/next_btn_image"
+            android:text="Відрізок"
+            android:textColor="#00000000"
+            app:backgroundTint="@null" />
+
     </LinearLayout>
 
     <com.example.lab2.Editor
         android:id="@+id/editorView"
-        android:layout_width="453dp"
-        android:layout_height="672dp"
+        android:layout_width="413dp"
+        android:layout_height="469dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
