@@ -60,6 +60,11 @@ class Editor @JvmOverloads constructor(
         when (event.action) {
 
             MotionEvent.ACTION_DOWN -> {
+                shapesIndex?.let { index ->
+                    if (index < shapes.size) {
+                        shapes.subList(index, shapes.size).clear()
+                    }
+                }
                 currentShape?.setCoordinates(event.x, event.y, event.x, event.y)
                 invalidate()
             }
@@ -73,7 +78,7 @@ class Editor @JvmOverloads constructor(
                 currentShape?.setCoordinates(currentShape?.startX ?: 0f, currentShape?.startY ?: 0f, event.x, event.y)
                 currentShape?.let {
                     shapes.add(it)
-                    shapesIndex = shapesIndex?.plus(1)
+                    shapesIndex = shapes.size
                 }
                 setCurrentShape(currentShapeType)
                 invalidate()
