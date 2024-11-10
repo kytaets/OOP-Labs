@@ -158,9 +158,18 @@
 
         <com.example.lab2.Editor
             android:id="@+id/editorView"
-            android:layout_width="390dp"
-            android:layout_height="662dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+        <Button
+            android:id="@+id/overlayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:text="My Button"
+            android:textColor="#000000"
+            android:backgroundTint="#6B89FF"
+            />
     </FrameLayout>
 
     <LinearLayout
