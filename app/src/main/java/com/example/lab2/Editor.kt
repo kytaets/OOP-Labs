@@ -38,9 +38,9 @@ class Editor @JvmOverloads constructor(
     }
 
     fun setShapeIndex(addIndex: Int) {
-        shapesIndex = (shapesIndex ?: 0) + addIndex  // Оновлюємо індекс
-        shapesIndex = shapesIndex?.coerceIn(0, shapes.size)  // Обмежуємо в межах [0, shapes.size]
-        invalidate()  // Перемальовуємо View
+        shapesIndex = (shapesIndex ?: 0) + addIndex
+        shapesIndex = shapesIndex?.coerceIn(0, shapes.size)
+        invalidate()
     }
 
 

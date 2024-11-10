@@ -12,8 +12,8 @@ class SegmentShape : Shape(), IEllipseShape, ILineShape {
   override fun draw(canvas: Canvas, isDrawing: Boolean) {
     drawCoordLine(canvas, startX, startY, endX, endY, isDrawing)
 
-    drawCircle(canvas, startX, startY, radius, Color.GRAY)
-    drawCircle(canvas, endX, endY, radius, Color.GRAY )
+    drawCircle(canvas, startX, startY, radius, Color.parseColor("#59BFFF"))
+    drawCircle(canvas, endX, endY, radius, Color.parseColor("#59BFFF"))
   }
 }
 

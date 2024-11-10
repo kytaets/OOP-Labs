@@ -19,7 +19,7 @@ class EllipseShape : Shape() {
             canvas.drawOval(startX, startY, endX, endY, paint)
 
             paint.style = Paint.Style.FILL
-            paint.color = Color.GRAY
+            paint.color = Color.parseColor("#59BFFF")
             canvas.drawOval(startX, startY, endX, endY, paint)
         }
     }

@@ -76,9 +76,9 @@ class MainActivity : AppCompatActivity() {
       filesList.visibility = View.GONE
       editorView.visibility = View.VISIBLE
 
-      selectedButton?.setBackgroundColor(Color.parseColor("#E9EFEC"))
+      selectedButton?.setBackgroundColor(Color.parseColor("#6B89FF"))
       selectedButton = buttons.find { it.text == objectName }
-      selectedButton?.setBackgroundColor(Color.GRAY)
+      selectedButton?.setBackgroundColor(Color.parseColor("#5067BF"))
 
       editorView.setCurrentShape(objectName)
     }
@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
 
     for (button in buttons) {
       button.setOnClickListener {
-        selectedButton?.setBackgroundColor(Color.parseColor("#E9EFEC"))
-        button.setBackgroundColor(Color.GRAY)
+        selectedButton?.setBackgroundColor(Color.parseColor("#6B89FF"))
+        button.setBackgroundColor(Color.parseColor("#5067BF"))
 
         selectedButton = button
         editorView.setCurrentShape(button.text.toString())
