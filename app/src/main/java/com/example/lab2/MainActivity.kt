@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.graphics.Color
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
   lateinit var prevShapeBtn: Button
   lateinit var nextShapeBtn: Button
+  lateinit var historyBtn: Button
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -55,6 +58,10 @@ class MainActivity : AppCompatActivity() {
     ellipseBtn = findViewById(R.id.ellipse_btn)
     cubeBtn = findViewById(R.id.cube_btn)
     segmentBtn = findViewById(R.id.segment_btn)
+
+    prevShapeBtn = findViewById(R.id.prevShapeBtn)
+    nextShapeBtn = findViewById(R.id.nextShapeBtn)
+    historyBtn = findViewById(R.id.history_btn)
 
 
     val objectList = resources.getStringArray(R.array.objects)
@@ -101,19 +108,31 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
-    prevShapeBtn = findViewById(R.id.prevShapeBtn)
-    nextShapeBtn = findViewById(R.id.nextShapeBtn)
 
     prevShapeBtn.setOnClickListener {
       editorView.setShapeIndex(-1)
-
     }
 
     nextShapeBtn.setOnClickListener {
       editorView.setShapeIndex(+1)
-
     }
 
+    historyBtn.setOnClickListener{showHistory()}
+
+  }
+
+  private fun showHistory() {
+    val dialogView = layoutInflater.inflate(R.layout.history_list, null)
+    val listView = dialogView.findViewById<ListView>(R.id.listView)
+
+    val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, editorView.shapeLogs)
+    listView.adapter = adapter
+
+    AlertDialog.Builder(this)
+      .setView(dialogView)
+      .setTitle("Історія")
+      .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+      .show()
   }
 
 

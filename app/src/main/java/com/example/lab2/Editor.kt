@@ -21,6 +21,7 @@ class Editor @JvmOverloads constructor(
 
     private var currentShape: Shape? = null
     private val shapes: MutableList<Shape> = mutableListOf()
+    val shapeLogs: MutableList<String> = mutableListOf()
     private var currentShapeType: String = "Прямокутник"
     var shapesIndex: Int? = 0
 
@@ -63,6 +64,7 @@ class Editor @JvmOverloads constructor(
                 shapesIndex?.let { index ->
                     if (index < shapes.size) {
                         shapes.subList(index, shapes.size).clear()
+                        shapeLogs.subList(index, shapeLogs.size).clear()
                     }
                 }
                 currentShape?.setCoordinates(event.x, event.y, event.x, event.y)
@@ -79,6 +81,10 @@ class Editor @JvmOverloads constructor(
                 currentShape?.let {
                     shapes.add(it)
                     shapesIndex = shapes.size
+
+                    val logEntry = "${currentShapeType}: (${it.startX}, ${it.startY}) - (${it.endX}, ${it.endY})"
+                    shapeLogs.add(logEntry)
+
                 }
                 setCurrentShape(currentShapeType)
                 invalidate()

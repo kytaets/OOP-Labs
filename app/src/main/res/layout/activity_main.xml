@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -151,6 +150,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -159,18 +159,63 @@
         <com.example.lab2.Editor
             android:id="@+id/editorView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="607dp" />
 
         <Button
-            android:id="@+id/overlayButton"
+            android:id="@+id/history_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|left"
-            android:text="Історія"
-            android:textColor="#000000"
             android:backgroundTint="#6B89FF"
-            />
+            android:text="Історія"
+            android:textColor="#000000" />
+
     </FrameLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="412dp"-->
+<!--        android:layout_height="112dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <TableLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TableRow>-->
+
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Фігура" />-->
+
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Початкові X,Y" />-->
+
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Кінцеві X,Y" />-->
+
+<!--            </TableRow>-->
+
+<!--            <TableRow>-->
+
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Дані 1" />-->
+
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Дані 2" />-->
+<!--                <TextView-->
+<!--                    android:padding="8dp"-->
+<!--                    android:text="Дані 2" />-->
+<!--            </TableRow>-->
+
+<!--        </TableLayout>-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -179,16 +224,14 @@
         android:layout_marginStart="44dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-        android:textColor="@android:color/black">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <ListView
             android:id="@+id/filesList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:background="#F7F7F7"
-            >
+            android:visibility="gone">
 
         </ListView>
     </LinearLayout>
