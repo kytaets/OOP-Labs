@@ -20,7 +20,7 @@ class Editor @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var currentShape: Shape? = null
-    private val shapes: MutableList<Shape> = mutableListOf()
+    val shapes: MutableList<Shape> = mutableListOf()
     val shapeLogs: MutableList<String> = mutableListOf()
     private var currentShapeType: String = "Прямокутник"
     var shapesIndex: Int? = 0
@@ -81,9 +81,6 @@ class Editor @JvmOverloads constructor(
                 currentShape?.let {
                     shapes.add(it)
                     shapesIndex = shapes.size
-
-                    val logEntry = "${currentShapeType}: (${it.startX}, ${it.startY}) - (${it.endX}, ${it.endY})"
-                    shapeLogs.add(logEntry)
 
                 }
                 setCurrentShape(currentShapeType)

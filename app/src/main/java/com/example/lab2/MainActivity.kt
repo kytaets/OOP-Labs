@@ -111,7 +111,6 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
-
     prevShapeBtn.setOnClickListener {
       editorView.setShapeIndex(-1)
     }
@@ -123,20 +122,6 @@ class MainActivity : AppCompatActivity() {
     historyBtn.setOnClickListener{shapeHistoryDialog.showHistoryDialog()}
 
   }
-
-//  private fun showHistory() {
-//    val dialogView = layoutInflater.inflate(R.layout.history_list, null)
-//    val listView = dialogView.findViewById<ListView>(R.id.listView)
-//
-//    val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, editorView.shapeLogs)
-//    listView.adapter = adapter
-//
-//    AlertDialog.Builder(this)
-//      .setView(dialogView)
-//      .setTitle("Історія")
-//      .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-//      .show()
-//  }
 
 
 }
