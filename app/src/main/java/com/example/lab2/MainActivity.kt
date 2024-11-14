@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
   lateinit var prevShapeBtn: Button
   lateinit var nextShapeBtn: Button
   lateinit var historyBtn: Button
+  private lateinit var shapeHistoryDialog: ShapeHistoryDialog
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     nextShapeBtn = findViewById(R.id.nextShapeBtn)
     historyBtn = findViewById(R.id.history_btn)
 
+    shapeHistoryDialog = ShapeHistoryDialog(this, editorView.shapeLogs)
 
     val objectList = resources.getStringArray(R.array.objects)
     val customAdapter = CustomAdapter(this, objectList)
@@ -117,23 +120,23 @@ class MainActivity : AppCompatActivity() {
       editorView.setShapeIndex(+1)
     }
 
-    historyBtn.setOnClickListener{showHistory()}
+    historyBtn.setOnClickListener{shapeHistoryDialog.showHistoryDialog()}
 
   }
 
-  private fun showHistory() {
-    val dialogView = layoutInflater.inflate(R.layout.history_list, null)
-    val listView = dialogView.findViewById<ListView>(R.id.listView)
-
-    val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, editorView.shapeLogs)
-    listView.adapter = adapter
-
-    AlertDialog.Builder(this)
-      .setView(dialogView)
-      .setTitle("Історія")
-      .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-      .show()
-  }
+//  private fun showHistory() {
+//    val dialogView = layoutInflater.inflate(R.layout.history_list, null)
+//    val listView = dialogView.findViewById<ListView>(R.id.listView)
+//
+//    val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, editorView.shapeLogs)
+//    listView.adapter = adapter
+//
+//    AlertDialog.Builder(this)
+//      .setView(dialogView)
+//      .setTitle("Історія")
+//      .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+//      .show()
+//  }
 
 
 }
