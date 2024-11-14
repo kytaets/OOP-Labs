@@ -30,7 +30,8 @@ class ShapeHistoryAdapter(
 
     val shape = shapes[position]
 
-    shapeName.text = shape.javaClass.simpleName
+    shapeName.text = shape.name
+
     x1.text = shape.startX.toString()
     y1.text = shape.startY.toString()
     x2.text = shape.endX.toString()

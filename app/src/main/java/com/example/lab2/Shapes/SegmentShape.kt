@@ -5,7 +5,7 @@ import android.graphics.Color
 import com.example.lab2.Shapes.Interfaces.IEllipseShape
 import com.example.lab2.Shapes.Interfaces.ILineShape
 
-class SegmentShape : Shape(), IEllipseShape, ILineShape {
+class SegmentShape : Shape("Відрізок"), IEllipseShape, ILineShape {
 
   private val radius = 20f
 

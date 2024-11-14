@@ -6,7 +6,7 @@ import android.graphics.Paint
 import com.example.lab2.Shapes.Interfaces.ILineShape
 import com.example.lab2.Shapes.Interfaces.IRectangleShape
 
-class CubeShape : Shape(), IRectangleShape, ILineShape {
+class CubeShape : Shape("Куб"), IRectangleShape, ILineShape {
 
   private val cubePaint: Paint = Paint().apply {
     color = Color.BLACK

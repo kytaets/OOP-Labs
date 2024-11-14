@@ -4,7 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 
-class DotShape : Shape() {
+class DotShape : Shape("Крапка") {
 
   override fun draw(canvas: Canvas, isDrawing: Boolean) {
     if (!isDrawing) {

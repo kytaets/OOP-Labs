@@ -3,7 +3,7 @@ package com.example.lab2.Shapes
 import android.graphics.Canvas
 import android.graphics.Paint
 
-abstract class Shape {
+abstract class Shape(val name: String) {
 
     val paint: Paint = Paint()
 
