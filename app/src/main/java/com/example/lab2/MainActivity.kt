@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.graphics.Color
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import com.example.lab2.adapters.CustomAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
     nextShapeBtn = findViewById(R.id.nextShapeBtn)
     historyBtn = findViewById(R.id.history_btn)
 
-    shapeHistoryDialog = ShapeHistoryDialog(this, editorView.shapeLogs)
+    shapeHistoryDialog = ShapeHistoryDialog(this)
 
     val objectList = resources.getStringArray(R.array.objects)
     val customAdapter = CustomAdapter(this, objectList)
