@@ -159,7 +159,7 @@
         <com.example.lab2.Editor
             android:id="@+id/editorView"
             android:layout_width="match_parent"
-            android:layout_height="607dp" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/history_btn"

@@ -1,5 +1,6 @@
 package com.example.lab2.adapters
 
+import java.util.Locale
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -33,10 +34,10 @@ class ShapeHistoryAdapter(
 
     shapeName.text = shape.name
 
-    x1.text = shape.startX.toString()
-    y1.text = shape.startY.toString()
-    x2.text = shape.endX.toString()
-    y2.text = shape.endY.toString()
+    x1.text = String.format(Locale.US, "%.1f", shape.startX)
+    y1.text = String.format(Locale.US,"%.1f", shape.startY)
+    x2.text = String.format(Locale.US,"%.1f", shape.endX)
+    y2.text = String.format(Locale.US,"%.1f", shape.endY)
 
     return view
   }
