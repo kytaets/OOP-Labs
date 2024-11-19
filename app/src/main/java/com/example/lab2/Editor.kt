@@ -41,7 +41,6 @@ class Editor @JvmOverloads constructor(
 
     private val shapeLogger: Logger = Logger(context)
 
-
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
         currentShape = when (shapeType) {
@@ -61,6 +60,14 @@ class Editor @JvmOverloads constructor(
         invalidate()
     }
 
+    fun highlightShape(index: Int) {
+        // Reset all shapes' highlighted status
+        shapes.forEachIndexed { i, shape ->
+            shape.highlighted = (i == index)  // Only highlight the shape at the given index
+        }
+        // Ensure the editor view is redrawn
+        invalidate()
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -68,10 +75,11 @@ class Editor @JvmOverloads constructor(
         val limit = shapesIndex?.coerceAtMost(shapes.size) ?: shapes.size
 
         for (i in 0 until limit) {
-            shapes[i].draw(canvas, false)
+            val shape = shapes[i]
+            shape.draw(canvas, shape.highlighted, false)
         }
 
-        currentShape?.draw(canvas, true)
+        currentShape?.draw(canvas, false, true)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

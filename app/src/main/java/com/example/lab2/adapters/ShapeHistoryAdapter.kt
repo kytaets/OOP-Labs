@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
+import com.example.lab2.MainActivity
 import com.example.lab2.R
 import com.example.lab2.Shapes.Shape
 
@@ -38,6 +39,10 @@ class ShapeHistoryAdapter(
     y1.text = String.format(Locale.US,"%.1f", shape.startY)
     x2.text = String.format(Locale.US,"%.1f", shape.endX)
     y2.text = String.format(Locale.US,"%.1f", shape.endY)
+
+    view.setOnClickListener {
+      (context as MainActivity).editorView.highlightShape(position)
+    }
 
     return view
   }

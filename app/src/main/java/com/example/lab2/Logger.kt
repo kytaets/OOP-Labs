@@ -11,9 +11,8 @@ class Logger (context: Context){
   private val file: File = File(context.filesDir, "shapes_log.txt")
 
   init {
-    // Очистимо файл при створенні нового сеансу
     try {
-      file.writeText("") // Очищення файлу при старті
+      file.writeText("")
     } catch (e: IOException) {
       e.printStackTrace()
     }
