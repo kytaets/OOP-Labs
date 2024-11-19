@@ -1,5 +1,6 @@
 package com.example.lab2
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
@@ -61,12 +62,18 @@ class Editor @JvmOverloads constructor(
     }
 
     fun highlightShape(index: Int) {
-        // Reset all shapes' highlighted status
         shapes.forEachIndexed { i, shape ->
             shape.highlighted = (i == index)  // Only highlight the shape at the given index
         }
-        // Ensure the editor view is redrawn
         invalidate()
+    }
+
+    fun removeShapeAt(index: Int) {
+        if (index in shapes.indices) {
+            shapes.removeAt(index)
+            shapesIndex = shapes.size
+            invalidate()
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -82,6 +89,7 @@ class Editor @JvmOverloads constructor(
         currentShape?.draw(canvas, false, true)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
 

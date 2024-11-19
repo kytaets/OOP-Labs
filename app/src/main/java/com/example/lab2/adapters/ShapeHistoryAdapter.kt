@@ -44,6 +44,12 @@ class ShapeHistoryAdapter(
       (context as MainActivity).editorView.highlightShape(position)
     }
 
+    view.setOnLongClickListener {
+      (context as MainActivity).editorView.removeShapeAt(position)
+      notifyDataSetChanged()
+      true
+    }
+
     return view
   }
 }
