@@ -1,8 +1,6 @@
 package com.example.lab2.Shapes
 
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import com.example.lab2.Shapes.Interfaces.ILineShape
 import com.example.lab2.Shapes.Interfaces.IRectangleShape
 
