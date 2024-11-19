@@ -39,6 +39,9 @@ class Editor @JvmOverloads constructor(
     private var currentShapeType: String = "Прямокутник"
     var shapesIndex: Int? = 0
 
+    private val shapeLogger: Logger = Logger(context)
+
+
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
         currentShape = when (shapeType) {
@@ -94,6 +97,8 @@ class Editor @JvmOverloads constructor(
                 currentShape?.let {
                     shapes.add(it)
                     shapesIndex = shapes.size
+
+                    shapeLogger.logShape(currentShapeType, it)
                 }
                 setCurrentShape(currentShapeType)
                 invalidate()
