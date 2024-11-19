@@ -19,6 +19,21 @@ class Editor @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    companion object {
+        @Volatile
+        private var instance: Editor? = null
+
+        fun init(editor: Editor): Editor {
+            return instance ?: synchronized(this) {
+                instance ?: editor.also { instance = it }
+            }
+        }
+
+        fun getInstance(): Editor {
+            return instance ?: throw IllegalStateException("Editor instance is not initialized. Call getInstance(editor) first.")
+        }
+    }
+
     private var currentShape: Shape? = null
     val shapes: MutableList<Shape> = mutableListOf()
     private var currentShapeType: String = "Прямокутник"
