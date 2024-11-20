@@ -50,6 +50,7 @@ class Editor @JvmOverloads constructor(
 
     private val shapeLogger: Logger = Logger(context)
 
+
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
         currentShape = when (shapeType) {
@@ -69,6 +70,7 @@ class Editor @JvmOverloads constructor(
         invalidate()
     }
 
+
     fun highlightShape(index: Int) {
         shapes.forEachIndexed { i, shape ->
             shape.highlighted = (i == index)  // Only highlight the shape at the given index
@@ -83,6 +85,7 @@ class Editor @JvmOverloads constructor(
             invalidate()
         }
     }
+
 
     fun saveShapesToDownloads(fileName: String) {
         try {
@@ -101,7 +104,6 @@ class Editor @JvmOverloads constructor(
             Toast.makeText(context, "Помилка збереження файлу.", Toast.LENGTH_SHORT).show()
         }
     }
-
 
     fun loadShapesFromFile(inputStream: InputStream) {
         val shapeSerializer = ShapeSerializer()
@@ -128,8 +130,6 @@ class Editor @JvmOverloads constructor(
             Toast.makeText(context, "Не вдалося завантажити файл. Перевірте його формат.", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
 
     override fun onDraw(canvas: Canvas) {
