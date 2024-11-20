@@ -10,7 +10,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.graphics.Color
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.lab2.adapters.CustomAdapter
+import com.example.lab2.adapters.FileOptionsAdapter
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +21,7 @@ class MainActivity : AppCompatActivity() {
   lateinit var filesBtn: Button
   lateinit var objectsBtn: Button
   lateinit var infoBtn: Button
-  lateinit var filesList: ListView
+  lateinit var objectsList: ListView
   lateinit var editorView: Editor
 
   lateinit var dotBtn: Button
@@ -36,6 +39,8 @@ class MainActivity : AppCompatActivity() {
   lateinit var historyBtn: Button
   private lateinit var shapeHistoryDialog: ShapeHistoryDialog
 
+  lateinit var filesList: ListView
+  private lateinit var filePicker: ActivityResultLauncher<String>
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -47,14 +52,12 @@ class MainActivity : AppCompatActivity() {
       insets
     }
 
+    // Main buttons
     filesBtn = findViewById(R.id.filesButton)
     objectsBtn = findViewById(R.id.objectsButton)
     infoBtn = findViewById(R.id.infoButton)
-    filesList = findViewById(R.id.filesList)
 
-    editorView = findViewById(R.id.editorView)
-    Editor.init(editorView)
-
+    // Object buttons
     dotBtn = findViewById(R.id.dot_btn)
     lineBtn = findViewById(R.id.line_btn)
     rectBtn = findViewById(R.id.rect_btn)
@@ -62,32 +65,46 @@ class MainActivity : AppCompatActivity() {
     cubeBtn = findViewById(R.id.cube_btn)
     segmentBtn = findViewById(R.id.segment_btn)
 
+    // History buttons
     prevShapeBtn = findViewById(R.id.prevShapeBtn)
     nextShapeBtn = findViewById(R.id.nextShapeBtn)
     historyBtn = findViewById(R.id.history_btn)
 
+    // Lists
+    objectsList = findViewById(R.id.objectsList)
+    filesList = findViewById(R.id.filesList)
+    val buttons = listOf(dotBtn, lineBtn, rectBtn, ellipseBtn, cubeBtn, segmentBtn)
+    val objects = resources.getStringArray(R.array.objects)
+
+    // Editor View
+    editorView = findViewById(R.id.editorView)
+    Editor.init(editorView)
+
     shapeHistoryDialog = ShapeHistoryDialog(this)
 
-    val objectList = resources.getStringArray(R.array.objects)
-    val customAdapter = CustomAdapter(this, objectList)
-    val buttons = listOf(dotBtn, lineBtn, rectBtn, ellipseBtn, cubeBtn, segmentBtn)
+    // Adapters
+    val customAdapter = CustomAdapter(this, objects)
+    val fileAdapter = FileOptionsAdapter(this)
+    objectsList.adapter = customAdapter
+    filesList.adapter = fileAdapter
 
-    filesList.adapter = customAdapter
+
+    // Object buttons listeners
 
     objectsBtn.setOnClickListener {
       val currentEditor = Editor.getInstance()
       currentEditor.visibility = View.GONE
-      filesList.visibility = View.VISIBLE
+      objectsList.visibility = View.VISIBLE
     }
 
-    filesList.setOnItemClickListener { parent, _, position, _ ->
+    objectsList.setOnItemClickListener { parent, _, position, _ ->
       val currentEditor = Editor.getInstance()
 
       objectName = parent.getItemAtPosition(position).toString()
 
       customAdapter.setSelectedPosition(position)
 
-      filesList.visibility = View.GONE
+      objectsList.visibility = View.GONE
       currentEditor.visibility = View.VISIBLE
 
       selectedButton?.setBackgroundColor(Color.parseColor("#6B89FF"))
@@ -96,7 +113,6 @@ class MainActivity : AppCompatActivity() {
 
       currentEditor.setCurrentShape(objectName)
     }
-
 
     for (button in buttons) {
       button.setOnClickListener {
@@ -117,6 +133,9 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
+
+    // History buttons listeners
+
     prevShapeBtn.setOnClickListener {
       val currentEditor = Editor.getInstance()
       currentEditor.setShapeIndex(-1)
@@ -129,7 +148,43 @@ class MainActivity : AppCompatActivity() {
 
     historyBtn.setOnClickListener{shapeHistoryDialog.showHistoryDialog()}
 
+
+    // File picker
+
+    filesBtn.setOnClickListener {
+      if (filesList.visibility == View.VISIBLE) {
+        filesList.visibility = View.GONE
+        editorView.visibility = View.VISIBLE
+      } else {
+        filesList.visibility = View.VISIBLE
+        editorView.visibility = View.GONE
+      }
+    }
+
+    filePicker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+      uri?.let {
+        val inputStream = contentResolver.openInputStream(it)
+        val currentEditor = Editor.getInstance()
+        inputStream?.let { stream ->
+          currentEditor.loadShapesFromFile(stream)
+        }
+      }
+    }
+
+    filesList.setOnItemClickListener { parent, view, position, id ->
+      when (position) {
+        0 -> {
+          val currentEditor = Editor.getInstance()
+          val fileName = "shapes_${System.currentTimeMillis()}.txt"
+          currentEditor.saveShapesToDownloads(fileName)
+        }
+        1 -> {
+          filePicker.launch("text/*")
+        }
+      }
+      filesList.visibility = View.GONE
+      editorView.visibility = View.VISIBLE
+    }
+
   }
-
-
 }

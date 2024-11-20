@@ -3,9 +3,12 @@ package com.example.lab2
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
+import android.os.Environment
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import com.example.lab2.Shapes.CubeShape
 import com.example.lab2.Shapes.DotShape
 import com.example.lab2.Shapes.EllipseShape
@@ -13,6 +16,10 @@ import com.example.lab2.Shapes.LineShape
 import com.example.lab2.Shapes.RectangleShape
 import com.example.lab2.Shapes.SegmentShape
 import com.example.lab2.Shapes.Shape
+import com.example.lab2.adapters.ShapeSerializer
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
 
 class Editor @JvmOverloads constructor(
     context: Context,
@@ -36,8 +43,9 @@ class Editor @JvmOverloads constructor(
     }
 
     private var currentShape: Shape? = null
-    val shapes: MutableList<Shape> = mutableListOf()
     private var currentShapeType: String = "Прямокутник"
+
+    val shapes: MutableList<Shape> = mutableListOf()
     var shapesIndex: Int? = 0
 
     private val shapeLogger: Logger = Logger(context)
@@ -75,6 +83,54 @@ class Editor @JvmOverloads constructor(
             invalidate()
         }
     }
+
+    fun saveShapesToDownloads(fileName: String) {
+        try {
+            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+            val file = File(downloadsDir, fileName)
+            val outputStream = FileOutputStream(file)
+            outputStream.bufferedWriter().use { writer ->
+                shapes.forEach { shape ->
+                    val serializedShape = ShapeSerializer().serialize(shape)
+                    writer.write("$serializedShape\n")
+                }
+            }
+            Toast.makeText(context, "Файл збережено у 'Завантаження': ${file.absolutePath}", Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Log.e("Editor", "Помилка збереження файлу в Завантаження", e)
+            Toast.makeText(context, "Помилка збереження файлу.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    fun loadShapesFromFile(inputStream: InputStream) {
+        val shapeSerializer = ShapeSerializer()
+
+        try {
+            inputStream.bufferedReader().use { reader ->
+                val fileContent = reader.readText()
+                shapes.clear()
+
+                fileContent.lines().filter { it.isNotBlank() }.forEach { line ->
+                    try {
+                        val shape = shapeSerializer.deserialize(line)
+                        shapes.add(shape)
+                    } catch (e: Exception) {
+                        Log.e("ShapeSerializer", "Error deserializing shape: $line", e)
+                    }
+                }
+
+                shapesIndex = shapes.size
+                invalidate()
+            }
+        } catch (e: Exception) {
+            Log.e("Editor", "Error loading shapes from file", e)
+            Toast.makeText(context, "Не вдалося завантажити файл. Перевірте його формат.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

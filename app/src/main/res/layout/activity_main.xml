@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
 
@@ -20,7 +20,7 @@
         <Button
             android:id="@+id/filesButton"
             android:layout_width="wrap_content"
-            android:layout_height="74dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
             android:text="Файл"
@@ -30,7 +30,7 @@
         <Button
             android:id="@+id/objectsButton"
             android:layout_width="wrap_content"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
             android:text="Об'єкти"
@@ -40,7 +40,7 @@
         <Button
             android:id="@+id/infoButton"
             android:layout_width="wrap_content"
-            android:layout_height="76dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
             android:text="Довідка"
@@ -52,7 +52,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +130,7 @@
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_weight="0.2"
-            android:background="@drawable/button_shape"
+            android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/prev_btn_image"
             android:text="Відрізок"
             android:textColor="#00000000"
@@ -141,7 +141,7 @@
             android:layout_width="20dp"
             android:layout_height="40dp"
             android:layout_weight="0.2"
-            android:background="@drawable/button_shape"
+            android:background="@drawable/objects_icon_btn_shape"
             android:drawableTop="@drawable/next_btn_image"
             android:text="Відрізок"
             android:textColor="#00000000"
@@ -172,51 +172,6 @@
 
     </FrameLayout>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="412dp"-->
-<!--        android:layout_height="112dp"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="16dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent">-->
-
-<!--        <TableLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--            <TableRow>-->
-
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Фігура" />-->
-
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Початкові X,Y" />-->
-
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Кінцеві X,Y" />-->
-
-<!--            </TableRow>-->
-
-<!--            <TableRow>-->
-
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Дані 1" />-->
-
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Дані 2" />-->
-<!--                <TextView-->
-<!--                    android:padding="8dp"-->
-<!--                    android:text="Дані 2" />-->
-<!--            </TableRow>-->
-
-<!--        </TableLayout>-->
-<!--    </LinearLayout>-->
-
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="358dp"
@@ -227,7 +182,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <ListView
-            android:id="@+id/filesList"
+            android:id="@+id/objectsList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#F7F7F7"
@@ -235,6 +190,24 @@
 
         </ListView>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <ListView
+            android:id="@+id/filesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
