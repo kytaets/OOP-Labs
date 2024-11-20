@@ -12,7 +12,7 @@ import android.graphics.Color
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.lab2.adapters.CustomAdapter
+import com.example.lab2.adapters.ObjectsListAdapter
 import com.example.lab2.adapters.FileOptionsAdapter
 
 
@@ -83,14 +83,13 @@ class MainActivity : AppCompatActivity() {
     shapeHistoryDialog = ShapeHistoryDialog(this)
 
     // Adapters
-    val customAdapter = CustomAdapter(this, objects)
+    val objectListAdapter = ObjectsListAdapter(this, objects)
     val fileAdapter = FileOptionsAdapter(this)
-    objectsList.adapter = customAdapter
+    objectsList.adapter = objectListAdapter
     filesList.adapter = fileAdapter
 
 
     // Object buttons listeners
-
     objectsBtn.setOnClickListener {
       val currentEditor = Editor.getInstance()
       currentEditor.visibility = View.GONE
@@ -102,7 +101,7 @@ class MainActivity : AppCompatActivity() {
 
       objectName = parent.getItemAtPosition(position).toString()
 
-      customAdapter.setSelectedPosition(position)
+      objectListAdapter.setSelectedPosition(position)
 
       objectsList.visibility = View.GONE
       currentEditor.visibility = View.VISIBLE
@@ -124,7 +123,7 @@ class MainActivity : AppCompatActivity() {
         selectedButton = button
         currentEditor.setCurrentShape(button.text.toString())
 
-        customAdapter.setSelectedPosition(buttons.indexOf(selectedButton))
+        objectListAdapter.setSelectedPosition(buttons.indexOf(selectedButton))
       }
 
       button.setOnLongClickListener {
@@ -135,7 +134,6 @@ class MainActivity : AppCompatActivity() {
 
 
     // History buttons listeners
-
     prevShapeBtn.setOnClickListener {
       val currentEditor = Editor.getInstance()
       currentEditor.setShapeIndex(-1)
@@ -150,7 +148,6 @@ class MainActivity : AppCompatActivity() {
 
 
     // File picker
-
     filesBtn.setOnClickListener {
       if (filesList.visibility == View.VISIBLE) {
         filesList.visibility = View.GONE

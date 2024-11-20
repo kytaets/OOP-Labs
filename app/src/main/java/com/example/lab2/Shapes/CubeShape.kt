@@ -11,10 +11,10 @@ class CubeShape : Shape("Куб"), IRectangleShape, ILineShape {
     val width = endX - startX
     val offset = width / 4
 
-    drawCoordLine(canvas, startX, startY, startX + offset, startY - offset, paint, isDrawing) // Left vertical
-    drawCoordLine(canvas, endX, startY, endX + offset, startY - offset, paint, isDrawing) // Right vertical
-    drawCoordLine(canvas, startX, endY, startX + offset, endY - offset, paint, isDrawing) // Bottom left vertical
-    drawCoordLine(canvas, endX, endY, endX + offset, endY - offset, paint, isDrawing) // Bottom right vertical
+    drawCoordLine(canvas, startX, startY, startX + offset, startY - offset, paint, isDrawing)
+    drawCoordLine(canvas, endX, startY, endX + offset, startY - offset, paint, isDrawing)
+    drawCoordLine(canvas, startX, endY, startX + offset, endY - offset, paint, isDrawing)
+    drawCoordLine(canvas, endX, endY, endX + offset, endY - offset, paint, isDrawing)
 
     drawRectangleBase(canvas, startX + offset, startY - offset, endX + offset, endY - offset, paint, isDrawing)
     drawRectangleBase(canvas, startX, startY, endX, endY, paint, isDrawing)

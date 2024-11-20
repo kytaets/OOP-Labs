@@ -9,12 +9,10 @@ import com.example.lab2.Shapes.SegmentShape
 import com.example.lab2.Shapes.Shape
 
 class ShapeSerializer {
-  // Серіалізація фігури в рядок
   fun serialize(shape: Shape): String {
     return "${shape.name}: (${shape.startX}, ${shape.startY}) -> (${shape.endX}, ${shape.endY})"
   }
 
-  // Десеріалізація рядка у фігуру
   fun deserialize(data: String): Shape {
     val parts = data.split(": ")
     val name = parts[0]

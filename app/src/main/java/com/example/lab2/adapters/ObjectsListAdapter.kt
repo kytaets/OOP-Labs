@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 
-class CustomAdapter(context: Context, private val items: Array<String>) :
+class ObjectsListAdapter(context: Context, private val items: Array<String>) :
   ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, items) {
 
   private var selectedPosition: Int = -1
