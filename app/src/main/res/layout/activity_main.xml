@@ -38,12 +38,12 @@
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/infoButton"
+            android:id="@+id/history_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button_shape"
-            android:text="Довідка"
+            android:text="Історія"
             android:textColor="#000000"
             app:backgroundTint="@null" />
 
@@ -160,15 +160,6 @@
             android:id="@+id/editorView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/history_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
-            android:backgroundTint="#6B89FF"
-            android:text="Історія"
-            android:textColor="#000000" />
 
     </FrameLayout>
 

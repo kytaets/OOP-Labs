@@ -9,7 +9,7 @@
         android:id="@+id/shapeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"
+        android:layout_weight="0.2"
         android:text="Shape Name"
         android:textSize="15sp" />
 
@@ -41,7 +41,7 @@
         android:id="@+id/y2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"
+        android:layout_weight="0.2"
         android:text="y2"
         android:textSize="15sp" />
 </LinearLayout>

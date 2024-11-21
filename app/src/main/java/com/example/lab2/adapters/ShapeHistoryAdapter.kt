@@ -2,6 +2,7 @@ package com.example.lab2.adapters
 
 import java.util.Locale
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,19 @@ class ShapeHistoryAdapter(
   private val context: Context,
   private val shapes: List<Shape>
 ) : BaseAdapter() {
+
+  private var selectedPosition: Int = -1
+  private val sharedPreferences = context.getSharedPreferences("ShapePrefs", Context.MODE_PRIVATE)
+
+  init {
+    selectedPosition = -1
+  }
+
+  private fun saveSelectedPosition() {
+    sharedPreferences.edit()
+      .putInt("SELECTED_POSITION", selectedPosition)
+      .apply()
+  }
 
   override fun getCount(): Int = shapes.size
 
@@ -40,12 +54,28 @@ class ShapeHistoryAdapter(
     x2.text = String.format(Locale.US,"%.1f", shape.endX)
     y2.text = String.format(Locale.US,"%.1f", shape.endY)
 
+    view.setBackgroundColor(
+      when {
+        position == selectedPosition -> Color.LTGRAY
+        else -> Color.WHITE
+      }
+    )
+
     view.setOnClickListener {
-      (context as MainActivity).editorView.highlightShape(position)
+      if (selectedPosition != position) {
+        selectedPosition = position
+        saveSelectedPosition()
+        notifyDataSetChanged()
+        (context as MainActivity).editorView.highlightShape(position)
+      }
     }
 
     view.setOnLongClickListener {
       (context as MainActivity).editorView.removeShapeAt(position)
+      if (position == selectedPosition) {
+        selectedPosition = -1
+        saveSelectedPosition()
+      }
       notifyDataSetChanged()
       true
     }

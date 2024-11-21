@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
   lateinit var filesBtn: Button
   lateinit var objectsBtn: Button
-  lateinit var infoBtn: Button
   lateinit var objectsList: ListView
   lateinit var editorView: Editor
 
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity() {
     // Main buttons
     filesBtn = findViewById(R.id.filesButton)
     objectsBtn = findViewById(R.id.objectsButton)
-    infoBtn = findViewById(R.id.infoButton)
 
     // Object buttons
     dotBtn = findViewById(R.id.dot_btn)
@@ -168,7 +166,7 @@ class MainActivity : AppCompatActivity() {
       }
     }
 
-    filesList.setOnItemClickListener { parent, view, position, id ->
+    filesList.setOnItemClickListener { _, _, position, _ ->
       when (position) {
         0 -> {
           val currentEditor = Editor.getInstance()

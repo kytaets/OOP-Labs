@@ -17,7 +17,7 @@ class ShapeHistoryDialog (private val context: Context){
 
     AlertDialog.Builder(context)
       .setView(dialogView)
-      .setTitle("Історія фігур")
+      .setTitle("Назва            x1       y1       x2       y2")
       .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
       .show()
   }

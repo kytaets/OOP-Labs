@@ -50,7 +50,7 @@ class Editor @JvmOverloads constructor(
 
     private val shapeLogger: Logger = Logger(context)
 
-
+    // Shape interaction
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
         currentShape = when (shapeType) {
@@ -70,10 +70,10 @@ class Editor @JvmOverloads constructor(
         invalidate()
     }
 
-
+    // History interaction
     fun highlightShape(index: Int) {
         shapes.forEachIndexed { i, shape ->
-            shape.highlighted = (i == index)  // Only highlight the shape at the given index
+            shape.highlighted = (i == index)
         }
         invalidate()
     }
@@ -87,6 +87,7 @@ class Editor @JvmOverloads constructor(
     }
 
 
+    // File picker interaction
     fun saveShapesToDownloads(fileName: String) {
         try {
             val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -131,7 +132,7 @@ class Editor @JvmOverloads constructor(
         }
     }
 
-
+    // Basic functions
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
