@@ -89,9 +89,12 @@ class MainActivity : AppCompatActivity() {
 
     // Object buttons listeners
     objectsBtn.setOnClickListener {
-      val currentEditor = Editor.getInstance()
-      currentEditor.visibility = View.GONE
-      objectsList.visibility = View.VISIBLE
+      filesList.visibility = View.GONE
+
+      when {
+        objectsList.visibility == View.VISIBLE -> objectsList.visibility = View.GONE
+        else -> objectsList.visibility = View.VISIBLE
+      }
     }
 
     objectsList.setOnItemClickListener { parent, _, position, _ ->
@@ -147,12 +150,11 @@ class MainActivity : AppCompatActivity() {
 
     // File picker
     filesBtn.setOnClickListener {
-      if (filesList.visibility == View.VISIBLE) {
-        filesList.visibility = View.GONE
-        editorView.visibility = View.VISIBLE
-      } else {
-        filesList.visibility = View.VISIBLE
-        editorView.visibility = View.GONE
+      objectsList.visibility = View.GONE
+
+      when {
+        filesList.visibility == View.VISIBLE -> filesList.visibility = View.GONE
+        else -> filesList.visibility = View.VISIBLE
       }
     }
 
