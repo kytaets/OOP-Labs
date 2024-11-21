@@ -153,13 +153,19 @@
         android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <com.example.lab2.Editor
             android:id="@+id/editorView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
+
+        <include
+            android:id="@+id/historyList"
+            layout="@layout/history_list"
+            android:visibility="gone" />
 
     </FrameLayout>
 

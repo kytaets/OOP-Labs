@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
       currentEditor.setShapeIndex(+1)
     }
 
-    historyBtn.setOnClickListener{shapeHistoryDialog.showHistoryDialog()}
+    historyBtn.setOnClickListener{shapeHistoryDialog.toggle()}
 
 
     // File picker

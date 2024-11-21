@@ -50,6 +50,9 @@ class Editor @JvmOverloads constructor(
 
     private val shapeLogger: Logger = Logger(context)
 
+    var updateShapesCallback: ((List<Shape>) -> Unit)? = null
+
+
     // Shape interaction
     fun setCurrentShape(shapeType: String) {
         currentShapeType = shapeType
@@ -78,10 +81,18 @@ class Editor @JvmOverloads constructor(
         invalidate()
     }
 
+    fun addShape(shape: Shape) {
+        shapes.add(shape)
+        shapesIndex = shapes.size
+        updateShapesCallback?.invoke(shapes)
+        invalidate()
+    }
+
     fun removeShapeAt(index: Int) {
         if (index in shapes.indices) {
             shapes.removeAt(index)
             shapesIndex = shapes.size
+            updateShapesCallback?.invoke(shapes)
             invalidate()
         }
     }
@@ -124,6 +135,7 @@ class Editor @JvmOverloads constructor(
                 }
 
                 shapesIndex = shapes.size
+                updateShapesCallback?.invoke(shapes)
                 invalidate()
             }
         } catch (e: Exception) {
@@ -131,6 +143,7 @@ class Editor @JvmOverloads constructor(
             Toast.makeText(context, "Не вдалося завантажити файл. Перевірте його формат.", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     // Basic functions
     override fun onDraw(canvas: Canvas) {
@@ -154,6 +167,7 @@ class Editor @JvmOverloads constructor(
                 shapesIndex?.let { index ->
                     if (index < shapes.size) {
                         shapes.subList(index, shapes.size).clear()
+                        updateShapesCallback?.invoke(shapes)
                     }
                 }
                 currentShape?.setCoordinates(event.x, event.y, event.x, event.y)
@@ -168,7 +182,7 @@ class Editor @JvmOverloads constructor(
             MotionEvent.ACTION_UP -> {
                 currentShape?.setCoordinates(currentShape?.startX ?: 0f, currentShape?.startY ?: 0f, event.x, event.y)
                 currentShape?.let {
-                    shapes.add(it)
+                    addShape(it)
                     shapesIndex = shapes.size
 
                     shapeLogger.logShape(currentShapeType, it)

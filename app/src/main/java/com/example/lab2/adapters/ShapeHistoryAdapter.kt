@@ -14,7 +14,7 @@ import com.example.lab2.Shapes.Shape
 
 class ShapeHistoryAdapter(
   private val context: Context,
-  private val shapes: List<Shape>
+  private var shapes: List<Shape>
 ) : BaseAdapter() {
 
   private var selectedPosition: Int = -1
@@ -28,6 +28,11 @@ class ShapeHistoryAdapter(
     sharedPreferences.edit()
       .putInt("SELECTED_POSITION", selectedPosition)
       .apply()
+  }
+
+  fun updateShapes(newShapes: List<Shape>) {
+    shapes = newShapes
+    notifyDataSetChanged()
   }
 
   override fun getCount(): Int = shapes.size

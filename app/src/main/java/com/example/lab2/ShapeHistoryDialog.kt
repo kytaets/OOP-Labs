@@ -1,25 +1,40 @@
 package com.example.lab2
 
-import android.app.AlertDialog
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ListView
 import com.example.lab2.adapters.ShapeHistoryAdapter
 
-class ShapeHistoryDialog (private val context: Context){
+class ShapeHistoryDialog(private val context: Context) {
 
-  fun showHistoryDialog() {
-    val dialogView = View.inflate(context, R.layout.history_list, null)
-    val listView = dialogView.findViewById<ListView>(R.id.listView)
+  private var isVisible = false
+  private var historyView: View? = null
+  private var adapter: ShapeHistoryAdapter? = null
 
-    val adapter = ShapeHistoryAdapter(context, (context as MainActivity).editorView.shapes)
-    listView.adapter = adapter
+  fun toggle() {
+    if (historyView == null) {
+      historyView = LayoutInflater.from(context).inflate(R.layout.history_list, null)
 
-    AlertDialog.Builder(context)
-      .setView(dialogView)
-      .setTitle("Назва            x1       y1       x2       y2")
-      .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
-      .show()
+      val editor = Editor.getInstance()
+      val listView: ListView = historyView!!.findViewById(R.id.listView)
+
+      adapter = ShapeHistoryAdapter(context, editor.shapes)
+      listView.adapter = adapter
+
+      listView.setOnItemClickListener { _, _, position, _ ->
+        editor.highlightShape(position)
+      }
+
+      editor.updateShapesCallback = { newShapes ->
+        adapter?.updateShapes(newShapes)
+      }
+
+      (context as MainActivity).findViewById<FrameLayout>(R.id.frameLayout).addView(historyView)
+    }
+
+    historyView?.visibility = if (isVisible) View.GONE else View.VISIBLE
+    isVisible = !isVisible
   }
-
 }
